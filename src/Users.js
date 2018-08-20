@@ -1,21 +1,46 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { initUsersSyncAction } from './state/users'
 
 class Users extends Component {
-  render(){
-    return(
-      <div>
-        
-      </div>
-    )
-  }
+    componentDidMount() {
+        this.props.initUsersSyncAction()
+    }
+
+    render() {
+        return (
+            <div>
+                {
+                    this.props.users === null ?
+                        'Ładowanie userów...'
+                        :
+                        Object.entries(this.props.users)
+                            .map(([key, value]) => ({
+                                ...value,
+                                key
+                            }))
+                            .map(user => (
+                                <div
+                                    key={user.key}
+                                >
+                                    {user.name}
+                                </div>
+                            ))
+                }
+            </div>
+        )
+    }
 }
 
-const mapStateToProps = state => ({})
+const mapStateToProps = state => ({
+    users: state.users.users
+})
 
-const mapDispatchToProps = dispatch => ({})
+const mapDispatchToProps = dispatch => ({
+    initUsersSyncAction: () => dispatch(initUsersSyncAction())
+})
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(Users)
