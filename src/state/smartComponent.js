@@ -19,12 +19,12 @@ export default (state = initialState, action) => {
         case INPUT:
             return {
                 ...state,
-                inputText: event.target.value
+                inputText: action.value
             }
         case DISPLAY_TEXT:
             return {
                 ...state,
-                displayedText: prevState.inputText
+                displayedText: state.inputText
             }
         default:
             return state
