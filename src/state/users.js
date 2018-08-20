@@ -18,6 +18,10 @@ export const initUsersSyncAction = () => (dispatch, getState) => {
         )
 }
 
+export const stopUserSyncAction = () => (dispatch, getState) => {
+    database.ref('/jfddl5-users').off()
+}
+
 const initialState = {
     users: null
 }
