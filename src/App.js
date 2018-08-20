@@ -9,6 +9,7 @@ class App extends Component {
       <div>
         <Router>
           <div>
+            <Link to={'/smart'}>Smart </Link>
             <Link to={'/hello/world'}>World </Link>
             <Link to={'/hello'}>Hello </Link>
             <Switch>
