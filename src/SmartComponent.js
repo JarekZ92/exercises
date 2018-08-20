@@ -1,8 +1,9 @@
 import React from 'react'
 
 import { connect } from 'react-redux'
+import { inputAction, displayText } from './state/smartComponent'
 
-const SmartComponent = props => (
+const SmartComponent = (props) => (
     <div>
         <p>
             {props.displayedText}
@@ -11,10 +12,10 @@ const SmartComponent = props => (
             type="text"
             placeholder={"Wpisz text!"}
             value={props.inputText}
-            onChange={onChangeHandler}
+            onChange={props.onChangeHandler}
         />
         <button
-            onClick={onClickHandler}
+            onClick={props.onClickHandler}
         >
             Pokaż tekst!
                         </button>
@@ -27,8 +28,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    onChangeHandler: () => dispatch(),
-    onClickHandler: () => dispatch()
+    onChangeHandler: event => dispatch(inputAction(event.target.value)),
+    onClickHandler: () => dispatch(displayText())
 })
 
 export default connect(

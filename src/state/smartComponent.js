@@ -2,10 +2,7 @@ const INPUT = 'smartComponent/INPUT'
 const DISPLAY_TEXT = 'smartComponent/DISPLAY_TEXT'
 
 
-export const inputAction = value => ({
-    type: INPUT,
-    value
-})
+export const inputAction = value => ({ type: INPUT, value })
 
 export const displayText = () => ({ type: DISPLAY_TEXT })
 
