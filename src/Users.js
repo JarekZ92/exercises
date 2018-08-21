@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { initUsersSyncAction, stopUserSyncAction } from './state/users'
+import { initUsersSyncAction, stopUserSyncAction, addCowToListAction, deleteUsersAction } from './state/users'
 
 class Users extends Component {
     componentDidMount() {
@@ -28,10 +28,24 @@ class Users extends Component {
                                     key={user.key}
                                 >
                                     {user.name}
+                                    <button
+                                        onClick={() => this.props.deleteUsersAction(user.key)}
+                                    >
+                                        X
+
+                                    </button>
                                 </div>
                             ))
                 }
+                <div>
+                    <button
+                        onClick={this.props.addCowToListAction}
+                    >
+                        Add 'Krowa' toList
+                </button>
+                </div>
             </div>
+
         )
     }
 }
@@ -41,11 +55,13 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
+    deleteUsersAction: key => dispatch(deleteUsersAction(key)),
+    addCowToListAction: () => dispatch(addCowToListAction()),
     initUsersSyncAction: () => dispatch(initUsersSyncAction()),
     stopUserSyncAction: () => dispatch(stopUserSyncAction())
 })
-
+//connect łączy, opakowuje component Users
 export default connect(
-    mapStateToProps,
+    mapStateToProps, //przekazuje stan do propsów
     mapDispatchToProps
 )(Users)
